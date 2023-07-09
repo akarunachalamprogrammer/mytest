@@ -523,7 +523,7 @@ async def settings(client, message):
         await save_group_settings(grp_id, 'max_btn', False)
         settings = await get_settings(grp_id)
     if 'is_shortlink' not in settings.keys():
-        await save_group_settings(grp_id, 'is_shortlink', True)
+        await save_group_settings(grp_id, 'is_shortlink', False)
     else:
         pass
 
@@ -827,7 +827,7 @@ async def deletemultiplefiles(bot, message):
         parse_mode=enums.ParseMode.HTML
     )
 
-@Client.on_message(filters.command("shortlink") & filters.user(ADMINS))
+@Client.on_message(filters.command("shortlink"))
 async def shortlink(bot, message):
     chat_type = message.chat.type
     if chat_type == enums.ChatType.PRIVATE:
